@@ -47,11 +47,11 @@ func main() {
 
 	// dynamic content
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		templateHandler(w, r, "index.templ")
+		templateHandler(w, r, "index.html")
 	})
 
 	http.HandleFunc("/info", func(w http.ResponseWriter, r *http.Request) {
-		templateHandler(w, r, "info.templ")
+		templateHandler(w, r, "info.html")
 	})
 
 	http.HandleFunc("/charts", func(w http.ResponseWriter, r *http.Request) {
@@ -59,15 +59,15 @@ func main() {
 	})
 
 	http.HandleFunc("/docs-api", func(w http.ResponseWriter, r *http.Request) {
-		templateHandler(w, r, "docs-api.templ")
+		templateHandler(w, r, "docs-api.html")
 	})
 
 	http.HandleFunc("/about", func(w http.ResponseWriter, r *http.Request) {
-		templateHandler(w, r, "about.templ")
+		templateHandler(w, r, "about.html")
 	})
 
 	http.HandleFunc("/stats", func(w http.ResponseWriter, r *http.Request) {
-		templateHandler(w, r, "stats.templ")
+		templateHandler(w, r, "stats.html")
 	})
 
 	http.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
@@ -106,7 +106,7 @@ func chartsHandler(w http.ResponseWriter, r *http.Request, session *mgo.Session)
 	defer session.Close()
 
 	// parse template
-	t, err := template.ParseFiles("template/charts.templ")
+	t, err := template.ParseFiles("template/charts.html")
 	if err != nil {
 		log.Println(err)
 	}
