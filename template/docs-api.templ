@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="Markets prediction and analytics" content="">
+    <meta name="Eric" content="">
+
+    <title>ixm - the intelligent exchange monitor</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/">
+                        ixm
+                    </a>
+                </li>
+                <li>
+                    <a href="/info">Info</a>
+                </li>
+                <li>
+                    <a href="/charts">Charts</a>
+                </li>
+                <li>
+                    <a href="/docs-api">API Docs</a>
+                </li>
+                <li>
+                    <a href="/about">About</a>
+                </li>
+                <li>
+                    <a href="/stats">Stats</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>API Docs</h1>
+                        
+						<p>The API is refreshed hourly. Polling much faster is a waste of time and bandwidth.</p>
+						<p>The REST API can be accessed at <code>https://ixm.echoesofthe.net/api</code>. Currently, only GET requests are supported.</p>
+						<p>Responses are returned in JSON.</p>
+						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+						<hr>
+						<table class="table table-striped">
+  							<tr>
+    							<th>Argument</th>
+    							<th>Description</th> 
+    							<th>Usage</th>
+  							</tr>
+	  						<tr>
+							    <td>market</td>
+							    <td>Name of exchange</td>
+							    <td>btceUSD</td>
+						    </tr>
+						    <tr>
+							    <td>start</td>
+							    <td>Starting unixtime of dataset</td> 
+						    	<td>1313334000</td>
+							</tr>
+							<tr>
+							    <td>end</td>
+							    <td>Ending unixtime of dataset</td> 
+						    	<td>1470600000</td>
+							</tr>
+						</table>
+						<hr>
+						<h3>Datapoint</h3>
+						<p>A datapoint is structured into <code>inferences</code>, <code>input</code>, and <code>metrics</code>.</p>
+						<pre>
+{
+  "_id":[string][unique id],
+  "inferences":{
+    "1":[float][value in 1 hr],
+    "3":[float][value in 3 hrs],
+    "6":[float][value in 6 hrs],
+    "12":[float][value in 12 hrs],
+    "24":[float][value in 24 hrs],
+    "48":[float][value in 48 hrs],
+    "96":[float][value in 96 hrs]
+  },
+  "input":{
+    "delta":[float][value change from last hour],
+    "value":[float][value for current hour],
+    "volume":[float][volume for current hour]
+  },
+  "metrics":{
+    "1":[float][MAPE for 1 hr inference],
+    "3":[float][MAPE for 3 hr inference],
+    "6":[float][MAPE for 6 hr inference],
+    "12":[float][MAPE for 12 hr inference],
+    "24":[float][MAPE for 24 hr inference],
+    "48":[float][MAPE for 48 hr inference],
+    "96":[float][MAPE for 96 hr inference]
+  },
+  "timestamp":[int][current unixtime]
+}
+						</pre>
+						<hr>
+
+						<h3>Examples</h3>
+						<p><code>GET /api</code></p>
+						<p>This will return a listing of all available markets, as well as some trivial statistics concerning those markets.</p>
+						<hr>	
+
+						<p><code>GET /api?market=btceUSD</code></p>
+						<p>If the market argument is included, the response will default to ticker, returning the latest datapoint pertaining to that market.
+						<hr>
+
+						<p><code>GET /api?market=btceUSD&start=1313334000&end=1470600000</code></p>
+						<p>For backtesting old data, a range of time can be specified using the <code>start</code> and <code>end</code> arguments. Either or both can be specified. When specifying a range, the <code>market</code> argument is required. A list of datapoints will be returned.</p>
+						<hr>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
