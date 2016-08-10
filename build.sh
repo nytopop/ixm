@@ -1,3 +1,3 @@
 #!/bin/bash
 
-go build -o ixm git.echoesofthe.net/nytopop/ixm
+go build -o bin/ixm github.com/nytopop/ixm
