@@ -39,7 +39,7 @@ func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	// connect to database
-	session, err := mgo.Dial("mongodb://172.18.2.21:27017")
+	session, err := mgo.Dial("mongodb://172.18.2.21")
 	if err != nil {
 		log.Fatalln(err)
 	}
