@@ -5,14 +5,13 @@
 package main
 
 import (
-	//"fmt"
-	//"html"
 	"encoding/json"
-	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
 	"html/template"
 	"log"
 	"net/http"
+
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 // Serve any template
@@ -65,7 +64,7 @@ func chartsHandler(w http.ResponseWriter, r *http.Request, session *mgo.Session)
 
 				steps := [...]int{
 					0, 1, 3, 6,
-					12,	24, 48, 96,
+					12, 24, 48, 96,
 				}
 
 				iMap := rawData[0]["inferences"].(bson.M)
@@ -105,13 +104,13 @@ func chartsHandler(w http.ResponseWriter, r *http.Request, session *mgo.Session)
 				}
 
 				model := ChartsModel{
-					Market: market,
-					Markets: markets,
-					Timestamp: rawData[0]["timestamp"].(int),
-					Steps: steps,
+					Market:     market,
+					Markets:    markets,
+					Timestamp:  rawData[0]["timestamp"].(int),
+					Steps:      steps,
 					Inferences: inferences,
-					Metrics: metrics,
-					Deltas: deltas,
+					Metrics:    metrics,
+					Deltas:     deltas,
 				}
 
 				t.Execute(w, model)
@@ -122,8 +121,8 @@ func chartsHandler(w http.ResponseWriter, r *http.Request, session *mgo.Session)
 
 	// if no arg, no data
 	model := ChartsModel{
-		Market: "nil",
-		Markets: markets,
+		Market:    "nil",
+		Markets:   markets,
 		Timestamp: 0,
 	}
 	t.Execute(w, model)

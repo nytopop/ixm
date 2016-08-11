@@ -1,14 +1,15 @@
 // ixm - the Intelligent eXchange Monitor
 
+// ixm.go
+
 package main
 
 import (
-	//"fmt"
-	//"html"
-	"gopkg.in/mgo.v2"
 	"log"
 	"net/http"
 	"runtime"
+
+	"gopkg.in/mgo.v2"
 )
 
 func main() {

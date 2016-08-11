@@ -5,11 +5,10 @@
 package main
 
 import (
-	//"fmt"
-	//"html"
+	"strconv"
+
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"strconv"
 )
 
 // API Market response struct
@@ -22,13 +21,13 @@ type ApiMarket struct {
 
 // Charts model
 type ChartsModel struct {
-	Market		string
-	Markets		[]string
-	Timestamp	int
-	Steps		[8]int
-	Inferences	[8]float64
-	Metrics		[8]float64
-	Deltas		[8]float64
+	Market     string
+	Markets    []string
+	Timestamp  int
+	Steps      [8]int
+	Inferences [8]float64
+	Metrics    [8]float64
+	Deltas     [8]float64
 }
 
 // Return all available markets
